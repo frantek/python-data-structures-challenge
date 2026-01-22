@@ -21,48 +21,59 @@ student_data = {
 # ------------------------------
 # Task 1: Remove Duplicate Courses
 # ------------------------------
-# TODO:
-# - Convert the courses list into a set
-# - Print the unique courses
+unique_courses = set(courses)
+print("Unique courses:", unique_courses)
 
 
 # ------------------------------
 # Task 2: Display Student Info
 # ------------------------------
-# TODO:
-# - Loop through the students list
-# - For each student, print:
-#   Name, age, and enrolled courses
+for name, age in students:
+    enrolled_courses = student_data[name]["courses"]
+    print(name, "-", age, "years old,", "Courses:", enrolled_courses)
 
 
 # ------------------------------
 # Task 3: Add Course for Bob
 # ------------------------------
-# TODO:
-# - Add "Databases" to Bob's course list
-#   ONLY if he is not already enrolled
-# - Print Bob's updated course list
+if "Databases" not in student_data["Bob"]["courses"]:
+    student_data["Bob"]["courses"].append("Databases")
+
+print("Bob's updated courses:", student_data["Bob"]["courses"])
 
 
 # ------------------------------
 # Task 4: Calculate Average Grades
 # ------------------------------
-# TODO:
-# - Loop through student_data
-# - Calculate and print each student's average grade
+for name in student_data:
+    grades = student_data[name]["grades"]
+    average = sum(grades) / len(grades)
+    print(name, "average grade:", average)
 
 
 # ------------------------------
 # Task 5: Find Students in a Course
 # ------------------------------
-# TODO:
-# - Ask the user to enter a course name
-# - Print all students enrolled in that course
+course_name = input("Enter a course name: ")
+
+for name in student_data:
+    if course_name in student_data[name]["courses"]:
+        print(name, "is enrolled in", course_name)
 
 
 # ------------------------------
 # Bonus (Optional)
 # ------------------------------
-# TODO:
-# - Store each student's average grade in the dictionary
-# - Print the student with the highest average grade
+highest_average = 0
+top_student = ""
+
+for name in student_data:
+    grades = student_data[name]["grades"]
+    average = sum(grades) / len(grades)
+    student_data[name]["average"] = average
+
+    if average > highest_average:
+        highest_average = average
+        top_student = name
+
+print("Top student:", top_student, "with average grade:", highest_average)
