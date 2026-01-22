@@ -54,11 +54,12 @@ for name in student_data:
 # ------------------------------
 # Task 5: Find Students in a Course
 # ------------------------------
-course_name = input("Enter a course name: ")
+course_name = input("Enter a course name: ").lower()
 
 for name in student_data:
-    if course_name in student_data[name]["courses"]:
-        print(name, "is enrolled in", course_name)
+    for course in student_data[name]["courses"]:
+        if course.lower() == course_name:
+            print(name, "is enrolled in", course)
 
 
 # ------------------------------
